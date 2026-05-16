@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALICE COLLECTOR TOURNAMENT | Official Rules</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #1B1F38;       /* Midnight Indigo */
+            --bg-medium: #321E4B;     /* Deep Violet */
+            --shadow-fog: #5D5375;    /* Dusty Lavender */
+            --accent: #A3E6D8;        /* Pale Mint */
+            --ornament: #C5A872;      /* Champagne Gold */
+            --highlight: #EAF1F8;     /* Silver Platinum */
+            --wa-color: #25d366;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-dark); color: var(--highlight); font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
+        
+        /* Efek Latar Belakang Midnight Indigo & Deep Violet */
+        .glow-bg { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: radial-gradient(circle at 50% -20%, var(--bg-medium) 0%, var(--bg-dark) 100%); 
+            z-index: -1; 
+        }
+        .container { max-width: 500px; margin: auto; padding: 20px; }
+
+        /* Header / Banner Hero */
+        .hero { 
+            text-align: center; 
+            padding: 60px 20px 40px; 
+            background: linear-gradient(to bottom, rgba(27, 31, 56, 0.4) 0%, var(--bg-dark) 100%), 
+                        url('https://images.alphacoders.com/132/1322230.jpeg'); 
+            background-size: cover; 
+            background-position: center; 
+            border-bottom: 3px solid var(--ornament); 
+        }
+        h1 { font-family: 'Orbitron'; font-size: 1.8rem; color: var(--ornament); text-shadow: 0 0 15px rgba(197, 168, 114, 0.5); letter-spacing: 2px; }
+
+        /* Action Box Panitia (Deep Violet & Champagne Gold) */
+        .action-box { 
+            background: linear-gradient(135deg, var(--bg-medium) 0%, #201330 100%); 
+            padding: 20px; 
+            border-radius: 20px; 
+            margin-bottom: 25px; 
+            text-align: center; 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
+            margin-top: -30px; 
+            position: relative; 
+            z-index: 10; 
+            border: 1px solid var(--shadow-fog); 
+        }
+        .btn-bracket { display: block; background: var(--ornament); color: var(--bg-dark); text-decoration: none; padding: 12px; border-radius: 12px; font-family: 'Orbitron'; font-weight: 900; margin-bottom: 10px; transition: 0.3s; letter-spacing: 1px; }
+        .btn-bracket:hover { background: var(--highlight); box-shadow: 0 0 10px var(--ornament); }
+
+        /* Card Styles */
+        .card { background: rgba(50, 30, 75, 0.4); border: 1px solid rgba(93, 83, 117, 0.3); border-radius: 20px; padding: 20px; margin-bottom: 20px; backdrop-filter: blur(10px); }
+        .card-title { font-family: 'Orbitron'; color: var(--ornament); font-size: 0.9rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(197, 168, 114, 0.3); padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .card-title i { color: var(--accent); }
+
+        /* Bracket Card Specific Styles */
+        .bracket-wrapper { width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid rgba(93, 83, 117, 0.3); background: #fff; }
+
+        /* SOP / Rules - Desain Rapih Terstruktur */
+        .sop-container { display: flex; flex-direction: column; gap: 15px; }
+        .sop-item { display: flex; gap: 12px; font-size: 0.95rem; line-height: 1.5; color: var(--highlight); }
+        .sop-item i { color: var(--accent); font-size: 1rem; margin-top: 3px; flex-shrink: 0; }
+        .sop-content strong { color: var(--ornament); display: block; margin-bottom: 2px; font-size: 0.95rem; }
+        
+        /* Modifikasi Alert / Warning Card */
+        .sop-item.danger-zone { background: rgba(93, 83, 117, 0.2); border: 1px solid var(--shadow-fog); border-left: 4px solid var(--ornament); padding: 12px; border-radius: 8px; }
+        .sop-item.danger-zone i { color: var(--ornament); }
+        .sop-item.danger-zone strong { color: #fff; }
+
+        /* Rundown */
+        .rundown-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(93, 83, 117, 0.2); font-size: 0.9rem; }
+        .time-tag { color: var(--accent); font-weight: bold; font-family: 'Orbitron'; }
+
+        /* SS GRID */
+        .ss-grid { display: flex; flex-direction: column; gap: 15px; }
+        .ss-item { background: var(--bg-dark); border-radius: 15px; overflow: hidden; border: 1px solid rgba(93, 83, 117, 0.3); }
+        .ss-img-box { 
+            width: 100%; 
+            aspect-ratio: 16/9; 
+            background: rgba(50, 30, 75, 0.6); 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: var(--shadow-fog); 
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid rgba(93, 83, 117, 0.2);
+        }
+        .ss-label { padding: 10px; text-align: center; font-size: 0.85rem; font-weight: bold; background: rgba(0,0,0,0.2); color: var(--highlight); }
+
+        /* Contact List */
+        .contact-list { max-height: 400px; overflow-y: auto; padding-right: 5px; }
+        .contact-item { background: rgba(50, 30, 75, 0.3); padding: 12px 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border: 1px solid rgba(93, 83, 117, 0.2); }
+        .team-name { font-weight: bold; font-size: 0.95rem; color: var(--highlight); }
+        .team-phone { font-size: 0.8rem; color: var(--shadow-fog); }
+        .wa-link { background: var(--wa-color); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; font-size: 1.1rem; transition: 0.2s; }
+        .wa-link:hover { transform: scale(1.1); }
+
+        .contact-list::-webkit-scrollbar { width: 5px; }
+        .contact-list::-webkit-scrollbar-thumb { background: var(--shadow-fog); border-radius: 10px; }
+
+        /* FAB */
+        .fab-wa { position: fixed; bottom: 20px; right: 20px; background: var(--wa-color); width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.4); text-decoration: none; z-index: 1000; transition: 0.3s; }
+        .fab-wa:hover { transform: scale(1.1); }
+    </style>
+</head>
+<body>
+
+    <div class="glow-bg"></div>
+
+    <section class="hero">
+        <h1 data-aos="zoom-in">ALICE COLLECTOR TOURNAMENT</h1>
+        <p style="opacity: 0.8; font-size: 0.9rem; margin-top: 5px; color: var(--highlight); letter-spacing: 1px;">Politeknik Caltex Riau - 2026</p>
+    </section>
+
+    <div class="container">
+
+        <div class="action-box" data-aos="fade-up">
+            <a href="https://challonge.com/cre_aliceCC" target="_blank" class="btn-bracket">LINK BRACKET</a>
+            <p style="font-size: 0.8rem; margin-bottom: 5px; color: var(--highlight);">Lapor Hasil & SS (Panitia):</p>
+            <a href="https://wa.me/6289621645687" style="color: var(--accent); font-size: 1.3rem; text-decoration: none; font-weight: bold;">
+                <i class="fab fa-whatsapp"></i> 0896-2164-5687
+            </a>
+        </div>
+
+        <div class="card" data-aos="fade-up">
+            <div class="card-title"><i class="fas fa-sitemap"></i> Live Match Bracket</div>
+            <div class="bracket-wrapper">
+                <iframe src="https://challonge.com/cre_aliceCC/module" width="100%" height="500" frameborder="0" scrolling="auto" allowtransparency="true"></iframe>
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-up">
+            <div class="card-title"><i class="fas fa-gavel"></i> SOP Permainan & Regulasi</div>
+            <div class="sop-container">
+                
+                <div class="sop-item">
+                    <i class="fas fa-clock"></i>
+                    <div class="sop-content">
+                        <strong>Kehadiran di Venue</strong>
+                        H-10 Menit wajib sudah berada di venue pertandingan. Jadwal main akan berjalan ketat sesuai rundown.
+                    </div>
+                </div>
+
+                <div class="sop-item danger-zone">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div class="sop-content">
+                        <strong>Dilarang Keras WO!</strong>
+                        Kondisi tim 2vs5 atau 3vs5 pertandingan TETAP GAS. Pelanggaran akibat WO akan dikenakan sanksi BAN TURNAMEN SELAMA 1 BULAN.
+                    </div>
+                </div>
+
+                <div class="sop-item">
+                    <i class="fas fa-wand-sparkles"></i>
+                    <div class="sop-content">
+                        <strong>Sistem Draft Pick</strong>
+                        Setiap tim wajib mengamankan / pick hero <b>ALICE</b> (Second pick wajib pick, First pick dibebaskan).
+                    </div>
+                </div>
+
+                <div class="sop-item">
+                    <i class="fas fa-trophy"></i>
+                    <div class="sop-content">
+                        <strong>Bronze Match & Grand Final</strong>
+                        Khusus pada babak ini, pemilihan hero sepenuhnya BEBAS tanpa ada regulasi kewajiban hero tertentu.
+                    </div>
+                </div>
+
+                <div class="sop-item">
+                    <i class="fas fa-comment-slash"></i>
+                    <div class="sop-content">
+                        <strong>Etika Chat</strong>
+                        Dilarang keras menggunakan fitur 'Chat All' selama pertandingan berlangsung demi menjaga sportivitas.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card" data-aos="fade-up">
+            <div class="card-title"><i class="fas fa-calendar-check"></i> RUNDOWN ACARA - 25 APRIL</div>
+            <div class="rundown-row"><span class="time-tag">13.00-13.30</span><span>Registrasi & Daftar Ulang</span></div>
+            <div class="rundown-row"><span class="time-tag">13.30-15.00</span><span>Babak Kualifikasi Round 1 (BO3)</span></div>
+            <div class="rundown-row"><span class="time-tag">15.00-16.30</span><span>Babak Kualifikasi Round 2 (BO3)</span></div>
+            <div class="rundown-row"><span class="time-tag">16.30-18.00</span><span>Babak Semifinal (BO3)</span></div>
+            <div class="rundown-row" style="border:none;"><span class="time-tag">18.00-End</span><span>Grand Final & Bronze Match</span></div>
+        </div>
+
+        <div class="card" data-aos="fade-up">
+            <div class="card-title"><i class="fas fa-camera"></i> BUKTI SCREENSHOT (WAJIB)</div>
+            <div class="ss-grid">
+                
+                <div class="ss-item">
+                    <div class="ss-img-box">
+                        <img src="img/ss-room.jpeg" alt="SS Room" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="ss-label">1. SCREENSHOT SAAT DI LOBBY / ROOM</div>
+                </div>
+
+                <div class="ss-item">
+                    <div class="ss-img-box">
+                        <img src="img/ss-game.jpeg" alt="SS Game" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="ss-label">2. SCREENSHOT SAAT IN-GAME BERTANDING</div>
+                </div>
+
+                <div class="ss-item">
+                    <div class="ss-img-box">
+                        <img src="img/ss-result.jpeg" alt="SS Result" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="ss-label">3. HASIL AKHIR PERTANDINGAN (WIN/LOSS)</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bagian Kontak Tim Lawan yang Telah Diperbarui -->
+        <div class="card" data-aos="fade-up">
+            <div class="card-title"><i class="fas fa-users"></i> HUBUNGI LAWAN BERTANDING</div>
+            <div class="contact-list">
+                <script>
+                    const teams = [
+                        ["Pixellers", "0898-0309-954"],
+                        ["lenyaplah kegelapan", "0877-1489-2728"],
+                        ["LANDAK", "0823-9106-8487"],
+                        ["Iklil Azhar", "0838-0150-8009"],
+                        ["Hachimi Mambo", "0852-7134-0054"],
+                        ["TIPSYY TEAMM", "0882-7097-7602"],
+                        ["HMTL", "0822-8753-5465"],
+                        ["Gryfin", "0823-9150-0624"]
+                    ];
+                    teams.forEach(t => {
+                        document.write(`<div class="contact-item"><div class="team-info"><div class="team-name">${t[0]}</div><div class="team-phone"><i class="fas fa-phone-alt" style="font-size:0.7rem; margin-right:4px;"></i>${t[1]}</div></div><a href="https://wa.me/62${t[1].replace(/[^0-9]/g, '')}" class="wa-link" target="_blank"><i class="fab fa-whatsapp"></i></a></div>`);
+                    });
+                </script>
+            </div>
+        </div>
+
+        <p style="text-align: center; font-size: 0.75rem; opacity: 0.4; padding-bottom: 40px; color: var(--highlight);">ALICE COLLECTOR TOURNAMENT - PCR 2026</p>
+    </div>
+
+    <a href="https://wa.me/6289621645687" class="fab-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 800, once: true });</script>
+</body>
+</html>
